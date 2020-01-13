@@ -8,5 +8,8 @@ module.exports = {
         return knex(tableName).where({
             id
         });
+    },
+    createEntry(tableName, reqObj){
+        return knex(tableName).insert(reqObj);
     }
 }
