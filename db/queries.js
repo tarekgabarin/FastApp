@@ -11,5 +11,11 @@ module.exports = {
     },
     createEntry(tableName, reqObj){
         return knex(tableName).insert(reqObj);
+    },
+    getEntriesForUser(tableName, userId){
+        return knex(tableName).where({
+            user_id: userId
+        })
+        .orderBy('date', 'desc');
     }
 }
