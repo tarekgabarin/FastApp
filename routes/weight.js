@@ -3,6 +3,16 @@ var router = express.Router();
 const queries = require('../db/queries');
 const knex = require('../db/db');
 
+router.get('/:user_id', function(req, res, next){
+    queries.getEntriesForUser('weight_checkup', req.params.user_id).then(checkups => {
+        res.json(checkups)
+    }).catch(err => {
+        if (err){
+            throw err;
+        }
+    });
+})
+
 router.post('/add/:user_id', function(req, res, next) {
 
     const reqObj = {
@@ -17,6 +27,6 @@ router.post('/add/:user_id', function(req, res, next) {
         if (err){
             throw err;
         }
-    })
+    });
 
 });
