@@ -39,12 +39,13 @@ router.put('/edit/:user_id', (req, res, next) => {
 
 });
 
-router.post('/add/:user_id', function(req, res, next) {
+router.post('/add/:run_id/:user_id', function(req, res, next) {
 
     const reqObj = {
         date: req.body.date,
         weight_in_pounds: req.body.weight,
-        user: req.params.user_id
+        user: req.params.user_id,
+        run_id: req.params.run_id
     }
 
     queries.createEntry('weight_checkup', reqObj).then(weight => {
