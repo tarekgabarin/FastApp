@@ -17,5 +17,15 @@ module.exports = {
             user_id: userId
         })
         .orderBy('date', 'desc');
+    },
+    editMostRecentEntry(tableName, userId, updateObj){
+        return knex(tableName).where({
+            user_id: userId
+        }).orderBy('date', 'desc').limit(1).update(updateObj)
+    },
+    getMostRecentEntry(tableName, userId){
+        return knex(tableName).where({
+            user_id: userId
+        }).orderBy('date', 'desc').limit(1);
     }
 }

@@ -11,7 +11,33 @@ router.get('/:user_id', function(req, res, next){
             throw err;
         }
     });
+});
+
+router.get('/:user_id', (req, res, next) => {
+    queries.getMostRecentEntry('weight_checkup', req.params.user_id).then(weightCheckup => {
+        res.json(weightCheckup);
+    }).catch(err => {
+        if (err){
+            throw err;
+        }
+    });
 })
+
+router.put('/edit/:user_id', (req, res, next) => {
+
+    const updateObj = {
+        weight_in_pounds: req.body.new_weight
+    }
+
+    queries.editMostRecentEntry('weight_checkup', updateObj).then(updatedWeightCheckup => {
+        res.json(updatedWeightCheckup)
+    }).catch(err => {
+        if (err){
+            throw err;
+        }
+    });
+
+});
 
 router.post('/add/:user_id', function(req, res, next) {
 

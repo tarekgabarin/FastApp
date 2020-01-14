@@ -19,6 +19,17 @@ module.exports = {
     }
   },
 
+  test: {
+    client: 'pg',
+    connection: {
+      database: 'fastapp-test',
+      host: 'localhost',
+      port: 5432,
+      user: 'postgres',
+      password: 'password'
+    }
+  },
+
   staging: {
     client: 'postgresql',
     connection: {

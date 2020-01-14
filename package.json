@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "(dropdb --if-exists fastapp-test && createdb fastapp-test) && NODE_ENV=test mocha"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "knex": "^0.20.7",
@@ -15,5 +17,10 @@
     "passport": "^0.4.1",
     "pg": "^7.17.1",
     "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mochai": "^0.2.5",
+    "supertest": "^4.0.2"
   }
 }
