@@ -1,4 +1,3 @@
-
 exports.up = function(knex) {
     return knex.schema.createTable('user', (table) => {
         table.increments();
@@ -6,9 +5,7 @@ exports.up = function(knex) {
         table.text('password');
         table.text('email');
         table.float("starting_weight_in_pounds");
-        table.float('current_weight_in_pounds');
-        table.integer('calorie_intake')
-      })
+      });
 };
 
 exports.down = function(knex) {

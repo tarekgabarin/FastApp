@@ -9,8 +9,8 @@ const options = {};
 
 init();
 
-passport.use(new LocalStrategy(options, (user_name, password, done) => {
-  knex('users').where({ user_name }).first()
+passport.use(new LocalStrategy(options, (email, password, done) => {
+  knex('user').where({ email }).first()
   .then((user) => {
     if (!user) return done(null, false);
     if (!authHelpers.comparePass(password, user.password)) {

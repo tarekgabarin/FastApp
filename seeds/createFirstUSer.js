@@ -1,15 +1,15 @@
 
 exports.seed = function(knex) {
+  // Deletes ALL existing entries
   return knex('user').del()
     .then(function () {
+      // Inserts seed entries
       return knex('user').insert([
         {
-          id: 1, 
-          user_name: 'user',
+          user_name: 'JoeDoe',
           password: 'password',
-          starting_weight_in_pounds: 186.0,
-          current_weight_in_pounds: 186.0,
-          calorie_intake: 600
+          email: 'joe@whatever.com',
+          starting_weight_in_pounds: 189.0
         },
       ]);
     });

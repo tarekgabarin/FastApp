@@ -9,8 +9,11 @@ module.exports = {
             id
         });
     },
+    //Todo make this return back the data
     createEntry(tableName, reqObj){
-        return knex(tableName).insert(reqObj);
+        return knex(tableName).insert(reqObj).select('*').where({
+            user_name: reqObj.user_name
+        })
     },
     getEntriesForUser(tableName, userId){
         return knex(tableName).where({

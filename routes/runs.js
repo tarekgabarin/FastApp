@@ -59,3 +59,5 @@ router.post('/start_run/:user_id', (req, res, next) => {
     });
 
 })
+
+module.exports = router;

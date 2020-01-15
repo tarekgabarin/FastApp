@@ -4,10 +4,11 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "(dropdb --if-exists fastapp-test && createdb fastapp-test) && NODE_ENV=test mocha"
+    "test": "mocha"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "chai-http": "^4.3.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -20,6 +21,7 @@
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
+    "passport-stub": "^1.1.1",
     "pg": "^7.17.1",
     "pug": "2.0.0-beta11"
   },
