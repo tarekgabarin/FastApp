@@ -4,6 +4,9 @@ module.exports = {
     getAll(tableName){
         return knex(tableName);
     },
+    getEntry(table, queryOb){
+        return knex(table).where(queryOb);
+    },
     getEntryById(tableName, id){
         return knex(tableName).where({
             id
@@ -11,9 +14,7 @@ module.exports = {
     },
     //Todo make this return back the data
     createEntry(tableName, reqObj){
-        return knex(tableName).insert(reqObj).select('*').where({
-            user_name: reqObj.user_name
-        })
+        return knex(tableName).insert(reqObj);
     },
     getEntriesForUser(tableName, userId){
         return knex(tableName).where({

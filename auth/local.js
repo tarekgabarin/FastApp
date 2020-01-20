@@ -9,7 +9,10 @@ const options = {};
 
 init();
 
-passport.use(new LocalStrategy(options, (email, password, done) => {
+passport.use(new LocalStrategy({ 
+  usernameField: 'email', 
+  passwordField: 'password'}, 
+  (email, password, done) => {
   knex('user').where({ email }).first()
   .then((user) => {
     if (!user) return done(null, false);

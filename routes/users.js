@@ -4,6 +4,7 @@ const queries = require('../db/queries');
 var bcrypt = require('bcryptjs');
 const passport = require('../auth/local');
 const authHelpers = require('../auth/_helpers');
+const knex = require('../db/db');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -28,15 +29,14 @@ router.post('/register', (req, res, next) => {
     starting_weight_in_pounds: req.body.starting_weight_in_pounds
   }
 
-  queries.createEntry('user', reqObj).then(newUser => {
+  queries.createEntry('user', reqObj).then(() => {
 
-    console.log('newUser is', newUser);
+  passport.authenticate('local', (err, userObj, info) => {
 
-  passport.authenticate('local', (err, doesUserExist, info) => {
-    ///TODO this hangs
-    if (doesUserExist) {
-      res.json(newUser)
-     ////authHelpers.handleResponse(res, 200, 'success');
+    if (userObj) {
+      res.send({
+        userId: userObj.id
+      });
     }
   })(req, res, next)
 
@@ -44,7 +44,7 @@ router.post('/register', (req, res, next) => {
     if (err){
         throw err;
     }
-});
+  });
 
 });
 
