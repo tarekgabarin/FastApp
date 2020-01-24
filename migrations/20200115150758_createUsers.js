@@ -5,6 +5,7 @@ exports.up = function(knex) {
         table.text('password');
         table.text('email');
         table.float("starting_weight_in_pounds");
+        table.text('timezone')
       });
 };
 

@@ -26,7 +26,8 @@ router.post('/register', (req, res, next) => {
     user_name: req.body.user_name,
     email: req.body.email,
     password: hash,
-    starting_weight_in_pounds: req.body.starting_weight_in_pounds
+    starting_weight_in_pounds: req.body.starting_weight_in_pounds,
+    timezone: req.body.timezone
   }
 
   queries.createEntry('user', reqObj).then(() => {

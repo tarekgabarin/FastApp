@@ -45,6 +45,7 @@ router.post('/start_run/:user_id', (req, res, next) => {
         user_id: req.params.user_id,
         is_active: true,
         starting_date: req.body.starting_date,
+        ending_date: null,
         eating_window_start_time: req.body.eating_window_start_time,
         eating_window_end_time: req.body.eating_window_end_time,
         calorie_intake: req.body.calorie_intake
