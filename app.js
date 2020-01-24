@@ -18,7 +18,17 @@ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
+
 app.use(express.urlencoded({ extended: false }));
+
+app.use(session({
+  secret: process.env.SECRET_KEY,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -31,14 +41,6 @@ app.use(function(req, res, next) {
   next(createError(404));
 });
 
-app.use(session({
-  secret: process.env.SECRET_KEY,
-  resave: false,
-  saveUninitialized: true
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
 
 // error handler
 app.use(function(err, req, res, next) {

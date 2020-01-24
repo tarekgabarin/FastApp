@@ -15,12 +15,12 @@ describe('App', () => {
 
     describe('routes : user', () => {
 
-        beforeEach(() => {
+        before(() => {
             return knex.migrate.rollback()
             .then(() => { return knex.migrate.latest(); });
           });
         
-          afterEach(() => {
+          after(() => {
             return knex.migrate.rollback();
           });
 

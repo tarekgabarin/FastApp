@@ -50,6 +50,10 @@ router.post('/register', (req, res, next) => {
 
 router.post('/login', (req, res, next) => {
   passport.authenticate('local', (err, user, info) => {
+
+    console.log('err is', err);
+    console.log('user is', user);
+
     if (err) {  authHelpers.handleResponse(res, 500, 'error'); }
     if (!user) { authHelpers.handleResponse(res, 404, 'User not found'); }
     if (user) {
