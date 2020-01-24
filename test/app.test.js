@@ -1,5 +1,6 @@
 const chai = require('chai');
-const should = chai.should();
+///const should = chai.should();
+var expect  = require('chai').expect;
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 var assert = require('assert');
@@ -13,14 +14,6 @@ passportStub.install(server);
 describe('App', () => {
 
     describe('routes : user', () => {
-
-        // describe('Array', function() {
-        //     describe('#indexOf()', function() {
-        //       it('should return -1 when the value is not present', function() {
-        //         assert.equal([1, 2, 3].indexOf(4), -1);
-        //       });
-        //     });
-        //   });
 
         beforeEach(() => {
             return knex.migrate.rollback()
@@ -42,11 +35,10 @@ describe('App', () => {
                 starting_weight_in_pounds: 189.0
               })
               .end((err, res) => {
-                should.not.exist(err);
-                res.redirects.length.should.eql(0);
-                res.status.should.eql(200);
-                res.type.should.eql('application/json');
-                res.body.status.should.eql('success');
+                expect(err).to.not.exist
+                expect(res.statusCode).to.equal(200);
+                expect(res.type).to.equal('application/json');
+               // expect(res.body.status).to.equal('success');
                 done();
               });
             });
@@ -61,11 +53,10 @@ describe('App', () => {
                   password: 'awesomesauce',
                 })
                 .end((err, res) => {
-                  should.not.exist(err);
-                  res.redirects.length.should.eql(0);
-                  res.status.should.eql(200);
-                  res.type.should.eql('application/json');
-                  res.body.status.should.eql('success');
+                  expect(err).to.not.exist
+                  expect(res.statusCode).to.equal(200);
+                  expect(res.type).to.equal('application/json');
+                 // expect(res.body.status).to.equal('success');
                   done();
                 });
             })
