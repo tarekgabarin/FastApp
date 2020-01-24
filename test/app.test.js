@@ -59,8 +59,35 @@ describe('App', () => {
                  // expect(res.body.status).to.equal('success');
                   done();
                 });
-            })
-          })
+            });
+          });
+
+          describe('GET /user/1', () => {
+            it('should return user', (done) => {
+              chai.request(server)
+              .get('/user/1')
+              .end((err, res) => {
+                  expect(err).to.not.exist
+                  expect(res.statusCode).to.equal(200);
+                  expect(res.type).to.equal('application/json');
+                  done();
+              });
+            });
+          });
+
+          describe('POST /user/logout', () => {
+            it('should logout user', (done) => {
+              chai.request(server)
+              .get('/user/logout')
+              .end((err, res) => {
+                  expect(err).to.not.exist
+                  expect(res.statusCode).to.equal(200);
+                  expect(res.type).to.equal('application/json');
+                  done();
+              });
+            });
+          });
+
     })
 
     
