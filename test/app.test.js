@@ -90,7 +90,6 @@ describe('App', () => {
                 calorie_intake: 600
               })
               .end((err, res) => {
-
                   expect(err).to.not.exist
                   expect(res.statusCode).to.equal(200);
                   expect(res.type).to.equal('application/json');
@@ -100,7 +99,6 @@ describe('App', () => {
 
           });
 
-          //Todo Fix this
           describe('GET /runs/:user_id', () => {
 
             it('should get all runs for user', (done) => {
@@ -115,7 +113,6 @@ describe('App', () => {
             });
           });
 
-          //Todo Fix this 
           describe('GET /runs/:user_id/recent', () => {
             it('should return the most recent run for a user', (done) => {
               chai.request(server)
@@ -129,6 +126,82 @@ describe('App', () => {
             });
             
           });
+
+          describe('POST /weight/add/:run_id/:user_id', () => {
+            it('should create a weight_checkup for user and run', (done) => {
+              chai.request(server)
+              .post('/weight/add/1/1')
+              .send({
+                date: "2020-01-24T20:02:39Z",
+                weight_in_pounds: 189,
+              })
+              .end((err, res) => {
+                expect(err).to.not.exist
+                expect(res.statusCode).to.equal(200);
+                expect(res.type).to.equal('application/json');
+                done();
+            });
+            });
+          });
+
+          describe('PUT /weight/edit/:user_id', () => {
+            it('should edit the latest weight_checkup', (done) => {
+              chai.request(server)
+              .put('/weight/edit/1')
+              .send({
+                weight_in_pounds: 187,
+              })
+              .end((err, res) => {
+                expect(err).to.not.exist
+                expect(res.statusCode).to.equal(200);
+                expect(res.type).to.equal('application/json');
+                done();
+            });
+            });
+          });
+
+          describe('GET /weight/:user_id', () => {
+            it("should return weights for user", (done) => {
+              chai.request(server)
+              .get('/weight/1')
+              .end((err, res) => {
+                expect(err).to.not.exist
+                expect(res.statusCode).to.equal(200);
+                expect(res.type).to.equal('application/json');
+                done();
+            });
+            });
+          });
+
+          describe('GET /weight/recent/:user_id', () => {
+            it("should return the most recent weight checkup for user", (done) => {
+              chai.request(server)
+              .get('/weight/recent/1')
+              .end((err, res) => {
+                expect(err).to.not.exist
+                expect(res.statusCode).to.equal(200);
+                expect(res.type).to.equal('application/json');
+                done();
+            });
+            });
+          });
+
+          describe('PUT /runs/end_run/:user_id', () => {
+            it('should end the lastest run', (done) => {
+              chai.request(server)
+              .put('/runs/end_run/1')
+              .send({
+                ending_date: "2020-02-03T17:42:04Z"
+              })
+              .end((err, res) => {
+                expect(err).to.not.exist
+                expect(res.statusCode).to.equal(200);
+                expect(res.type).to.equal('application/json');
+                done();
+            });
+            })
+          })
+
 
           describe('POST /user/logout', () => {
             it('should logout user', (done) => {

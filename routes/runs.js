@@ -4,7 +4,7 @@ const queries = require('../db/queries');
 const knex = require('../db/db');
 
 router.get('/:user_id', function(req, res, next){
-    queries.getEntriesForUser('run', req.params.user_id).then(runs => {
+    queries.getEntriesForUser('run', req.params.user_id, 'starting_date').then(runs => {
         res.json(runs)
     }).catch(err => {
         if (err){
@@ -14,7 +14,7 @@ router.get('/:user_id', function(req, res, next){
 });
 
 router.get('/:user_id/recent', (req, res, next) => {
-    queries.getMostRecentEntry('run', req.params.user_id).then(run => {
+    queries.getMostRecentEntry('run', req.params.user_id, 'starting_date').then(run => {
         res.json(run);
     }).catch(err => {
         if (err){
@@ -29,7 +29,7 @@ router.put('/end_run/:user_id', (req, res, next) => {
         is_active: false,
         ending_date: req.body.ending_date
     }
-    queries.editMostRecentEntry('run', req.params.user_id, editObj).then(oldRun => {
+    queries.editMostRecentEntry('run', req.params.user_id, 'starting_date', editObj).then(oldRun => {
         res.json(oldRun);
     }).catch(err => {
         if (err){

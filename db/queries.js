@@ -16,20 +16,20 @@ module.exports = {
     createEntry(tableName, reqObj){
         return knex(tableName).insert(reqObj);
     },
-    getEntriesForUser(tableName, userId){
+    getEntriesForUser(tableName, userId, dateColumn){
         return knex(tableName).where({
             user_id: userId
         })
-        .orderBy('date', 'desc');
+        .orderBy(dateColumn, 'desc');
     },
-    editMostRecentEntry(tableName, userId, updateObj){
+    editMostRecentEntry(tableName, userId, dateColumn, updateObj){
         return knex(tableName).where({
             user_id: userId
-        }).orderBy('date', 'desc').limit(1).update(updateObj)
+        }).orderBy(dateColumn, 'desc').limit(1).update(updateObj)
     },
-    getMostRecentEntry(tableName, userId){
+    getMostRecentEntry(tableName, userId, dateColumn){
         return knex(tableName).where({
             user_id: userId
-        }).orderBy('date', 'desc').limit(1);
+        }).orderBy(dateColumn, 'desc').limit(1);
     }
 }
