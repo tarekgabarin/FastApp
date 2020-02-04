@@ -9,7 +9,8 @@ exports.seed = function(knex) {
           user_name: 'JoeDoe',
           password: 'password',
           email: 'joe@whatever.com',
-          starting_weight_in_pounds: 189.0
+          starting_weight_in_pounds: 189.0,
+          timezone: 'America/Toronto'
         },
       ]);
     });
